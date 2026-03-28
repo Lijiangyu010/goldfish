@@ -1,1 +1,93 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>🦒 长颈鹿 我喜欢你</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
 
+  <!-- 飘落爱心 -->
+  <div class="hearts-container" id="hearts"></div>
+
+  <div class="scene">
+    <!-- 云朵装饰 -->
+    <div class="cloud c1"></div>
+    <div class="cloud c2"></div>
+
+    <!-- 文字 -->
+    <div class="text-wrapper">
+      <h1><span class="emoji">🦒</span> 长颈鹿<br/>我喜欢你</h1>
+    </div>
+
+    <!-- 像素风长颈鹿 -->
+    <div class="giraffe">
+      <!-- 头 -->
+      <div class="giraffe-head">
+        <div class="horn left"></div>
+        <div class="horn right"></div>
+        <div class="ear left"></div>
+        <div class="ear right"></div>
+        <div class="eye left"></div>
+        <div class="eye right"></div>
+        <div class="blush left"></div>
+        <div class="blush right"></div>
+        <div class="mouth"></div>
+      </div>
+
+      <!-- 脖子 -->
+      <div class="giraffe-neck">
+        <div class="neck-spot"></div>
+        <div class="neck-spot"></div>
+        <div class="neck-spot"></div>
+      </div>
+
+      <!-- 身体 -->
+      <div class="giraffe-body">
+        <div class="spot1"></div>
+        <div class="spot2"></div>
+      </div>
+
+      <!-- 尾巴 -->
+      <div class="giraffe-tail"></div>
+
+      <!-- 腿 -->
+      <div class="legs">
+        <div class="leg"><div class="hoof"></div></div>
+        <div class="leg"><div class="hoof"></div></div>
+        <div class="leg"><div class="hoof"></div></div>
+        <div class="leg"><div class="hoof"></div></div>
+      </div>
+    </div>
+
+    <!-- 地面 -->
+    <div class="ground"></div>
+  </div>
+
+  <script>
+    (function () {
+      var container = document.getElementById('hearts');
+      var symbols = ['❤', '💕', '💗', '♥', '💖'];
+      var colors  = ['#e8636f', '#f2a6b3', '#ff7eb3', '#ff5c8a', '#d4588c'];
+      var count   = 28;
+      for (var i = 0; i < count; i++) {
+        var span = document.createElement('span');
+        span.className = 'heart';
+        span.textContent = symbols[i % symbols.length];
+        var left     = Math.random() * 100;
+        var size     = 16 + Math.random() * 18;
+        var duration = 6 + Math.random() * 8;
+        var delay    = Math.random() * 12;
+        span.style.left             = left + '%';
+        span.style.fontSize         = size + 'px';
+        span.style.color            = colors[i % colors.length];
+        span.style.animationDuration = duration + 's';
+        span.style.animationDelay   = delay + 's';
+        container.appendChild(span);
+      }
+    })();
+  </script>
+
+</body>
+</html>

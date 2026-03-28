@@ -1,0 +1,315 @@
+/* ===== 基础重置 & 全局 ===== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  width: 100%; height: 100%;
+  overflow: hidden;
+  font-family: 'Courier New', monospace;
+  background: linear-gradient(180deg, #fef6e4 0%, #f3d2c1 100%);
+}
+
+/* ===== 场景容器 ===== */
+.scene {
+  position: relative;
+  width: 100%; height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* ===== 地面 ===== */
+.ground {
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%; height: 18vh;
+  background: #c8e6b2;
+  border-radius: 50% 50% 0 0 / 30% 30% 0 0;
+  z-index: 1;
+}
+
+/* ===== 像素风长颈鹿 (纯 CSS) ===== */
+.giraffe {
+  position: absolute;
+  bottom: 12vh;
+  z-index: 2;
+  /* 整体缩放 */
+  transform: scale(1);
+}
+
+/* ---------- 身体 ---------- */
+.giraffe-body {
+  position: relative;
+  width: 60px; height: 80px;
+  background: #f5c542;
+  border-radius: 12px;
+  margin: 0 auto;
+}
+.giraffe-body::before,
+.giraffe-body::after {
+  content: '';
+  position: absolute;
+  width: 10px; height: 10px;
+  background: #d4943a;
+  border-radius: 3px;
+}
+.giraffe-body::before { top: 12px; left: 10px; }
+.giraffe-body::after  { top: 30px; left: 32px; }
+.spot1, .spot2 {
+  position: absolute;
+  width: 10px; height: 10px;
+  background: #d4943a;
+  border-radius: 3px;
+}
+.spot1 { top: 50px; left: 14px; }
+.spot2 { top: 22px; left: 38px; }
+
+/* ---------- 脖子 ---------- */
+.giraffe-neck {
+  position: absolute;
+  top: -90px; left: 50%;
+  transform: translateX(-50%);
+  width: 26px; height: 100px;
+  background: #f5c542;
+  border-radius: 10px 10px 0 0;
+}
+.neck-spot {
+  position: absolute;
+  width: 8px; height: 8px;
+  background: #d4943a;
+  border-radius: 2px;
+}
+.neck-spot:nth-child(1) { top: 14px; left: 4px; }
+.neck-spot:nth-child(2) { top: 36px; left: 12px; }
+.neck-spot:nth-child(3) { top: 58px; left: 6px; }
+
+/* ---------- 头 ---------- */
+.giraffe-head {
+  position: absolute;
+  top: -130px; left: 50%;
+  transform: translateX(-50%);
+  width: 40px; height: 34px;
+  background: #f5c542;
+  border-radius: 14px 14px 10px 10px;
+}
+
+/* 耳朵 */
+.ear {
+  position: absolute;
+  top: -8px;
+  width: 10px; height: 14px;
+  background: #f5c542;
+  border-radius: 5px 5px 0 0;
+}
+.ear.left  { left: 2px; }
+.ear.right { right: 2px; }
+
+/* 小角 */
+.horn {
+  position: absolute;
+  top: -16px;
+  width: 4px; height: 14px;
+  background: #d4943a;
+  border-radius: 2px;
+}
+.horn::after {
+  content: '';
+  position: absolute;
+  top: -5px; left: -2px;
+  width: 8px; height: 8px;
+  background: #d4943a;
+  border-radius: 50%;
+}
+.horn.left  { left: 8px; }
+.horn.right { right: 8px; }
+
+/* 眼睛 */
+.eye {
+  position: absolute;
+  top: 10px;
+  width: 7px; height: 7px;
+  background: #3e2723;
+  border-radius: 50%;
+}
+.eye::after {
+  content: '';
+  position: absolute;
+  top: 1px; left: 2px;
+  width: 3px; height: 3px;
+  background: #fff;
+  border-radius: 50%;
+}
+.eye.left  { left: 7px; }
+.eye.right { right: 7px; }
+
+/* 嘴巴 (微笑) */
+.mouth {
+  position: absolute;
+  bottom: 5px; left: 50%;
+  transform: translateX(-50%);
+  width: 12px; height: 6px;
+  border-bottom: 2.5px solid #3e2723;
+  border-radius: 0 0 6px 6px;
+}
+
+/* 腮红 */
+.blush {
+  position: absolute;
+  top: 18px;
+  width: 10px; height: 6px;
+  background: #f8a0a0;
+  border-radius: 50%;
+  opacity: .55;
+}
+.blush.left  { left: 2px; }
+.blush.right { right: 2px; }
+
+/* ---------- 腿 ---------- */
+.legs {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 6px;
+  margin-top: -2px;
+}
+.leg {
+  width: 12px; height: 42px;
+  background: #f5c542;
+  border-radius: 0 0 4px 4px;
+}
+.leg .hoof {
+  width: 14px; height: 8px;
+  background: #d4943a;
+  border-radius: 0 0 4px 4px;
+  margin-left: -1px;
+  margin-top: auto;
+  position: absolute;
+  bottom: 0;
+}
+.leg {
+  position: relative;
+}
+
+/* ---------- 尾巴 ---------- */
+.giraffe-tail {
+  position: absolute;
+  bottom: 60px; right: -14px;
+  width: 4px; height: 28px;
+  background: #d4943a;
+  border-radius: 2px;
+  transform: rotate(20deg);
+  transform-origin: top center;
+  animation: tailWag 2s ease-in-out infinite;
+}
+.giraffe-tail::after {
+  content: '';
+  position: absolute;
+  bottom: -6px; left: -3px;
+  width: 10px; height: 8px;
+  background: #d4943a;
+  border-radius: 50%;
+}
+
+@keyframes tailWag {
+  0%, 100% { transform: rotate(20deg); }
+  50%      { transform: rotate(-10deg); }
+}
+
+/* ===== 飘落的爱心 ===== */
+.hearts-container {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.heart {
+  position: absolute;
+  top: -40px;
+  font-size: 22px;
+  opacity: 0;
+  animation: heartFall linear infinite;
+}
+
+@keyframes heartFall {
+  0%   { transform: translateY(0) rotate(0deg) scale(1);   opacity: 0; }
+  10%  { opacity: .85; }
+  90%  { opacity: .7; }
+  100% { transform: translateY(110vh) rotate(360deg) scale(.6); opacity: 0; }
+}
+
+/* 不同爱心的参数由 HTML 内联样式设置 */
+
+/* ===== 文字 ===== */
+.text-wrapper {
+  position: absolute;
+  top: 8vh;
+  z-index: 3;
+  text-align: center;
+  animation: textFloat 3s ease-in-out infinite;
+}
+
+.text-wrapper h1 {
+  font-size: 2rem;
+  color: #e8636f;
+  letter-spacing: .15em;
+  text-shadow: 0 2px 8px rgba(232,99,111,.25);
+  line-height: 1.6;
+}
+
+.text-wrapper h1 .emoji {
+  font-size: 2.4rem;
+}
+
+@keyframes textFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}
+
+/* ===== 小云朵装饰 ===== */
+.cloud {
+  position: absolute;
+  background: #fff;
+  border-radius: 50px;
+  opacity: .45;
+  z-index: 0;
+}
+.cloud::before, .cloud::after {
+  content: '';
+  position: absolute;
+  background: #fff;
+  border-radius: 50%;
+}
+.cloud.c1 {
+  width: 90px; height: 30px;
+  top: 18vh; left: 8%;
+  animation: cloudDrift 28s linear infinite;
+}
+.cloud.c1::before { width: 40px; height: 40px; top: -18px; left: 14px; }
+.cloud.c1::after  { width: 30px; height: 30px; top: -10px; right: 12px; }
+
+.cloud.c2 {
+  width: 70px; height: 24px;
+  top: 12vh; right: 12%;
+  animation: cloudDrift 22s linear infinite reverse;
+}
+.cloud.c2::before { width: 32px; height: 32px; top: -14px; left: 10px; }
+.cloud.c2::after  { width: 24px; height: 24px; top: -8px; right: 8px; }
+
+@keyframes cloudDrift {
+  0%   { transform: translateX(0); }
+  50%  { transform: translateX(30px); }
+  100% { transform: translateX(0); }
+}
+
+/* ===== 手机端适配 ===== */
+@media (max-width: 600px) {
+  .text-wrapper h1 { font-size: 1.45rem; }
+  .giraffe { transform: scale(.85); bottom: 10vh; }
+  .ground  { height: 14vh; }
+}
+@media (max-width: 380px) {
+  .text-wrapper h1 { font-size: 1.15rem; }
+  .giraffe { transform: scale(.7); bottom: 8vh; }
+}
